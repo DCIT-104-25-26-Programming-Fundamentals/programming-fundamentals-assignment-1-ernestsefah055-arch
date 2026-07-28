@@ -68,3 +68,86 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def add(a, b):
+    return a + b
+
+
+def subtract(a, b):
+    return a - b
+
+
+def multiply(a, b):
+    return a * b
+
+
+def divide(a, b):
+    if b == 0:
+        return None
+    return round(a / b, 2)
+
+
+def modulus(a, b):
+    if b == 0:
+        return None
+    return a % b
+
+
+def exponent(a, b):
+    return a ** b
+
+
+def print_menu():
+    print("============================")
+    print("     SIMPLE CALCULATOR")
+    print("============================")
+    print("1. Addition")
+    print("2. Subtraction")
+    print("3. Multiplication")
+    print("4. Division")
+    print("5. Modulus")
+    print("6. Exponentiation")
+    print("7. Quit")
+
+
+def main():
+    operations = {
+        "1": ("+", add),
+        "2": ("-", subtract),
+        "3": ("*", multiply),
+        "4": ("/", divide),
+        "5": ("%", modulus),
+        "6": ("**", exponent),
+    }
+
+    while True:
+        print_menu()
+        choice = input("Select an operation (1-7): ")
+        print()
+
+        if choice == "7":
+            print("Goodbye!")
+            break
+
+        if choice not in operations:
+            print("Error: Invalid choice. Please select a number from 1 to 7.")
+            print()
+            continue
+
+        symbol, operation_func = operations[choice]
+
+        first = float(input("Enter first number : "))
+        second = float(input("Enter second number: "))
+
+        if choice == "4" and second == 0:
+            print("Error: Cannot divide by zero.")
+        elif choice == "5" and second == 0:
+            print("Error: Cannot perform modulus by zero.")
+        else:
+            result = operation_func(first, second)
+            print(f"Result: {first:g} {symbol} {second:g} = {result}")
+
+        print()
+
+
+if __name__ == "__main__":
+    main()
